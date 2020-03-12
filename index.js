@@ -1,6 +1,9 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
+app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/index.html');
@@ -27,7 +30,6 @@ io.on('connection', function(socket) {
     });
 
     socket.on('msg', function(data) {
-        //Send message to everyone
 
         for(var i = 0; i < sockets.length; i++){
             if(sockets[i].name === data.to){

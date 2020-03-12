@@ -1,0 +1,59 @@
+body{
+    display:flex;
+}
+
+.members{
+    padding: 20px;
+    width: 400px;
+}
+
+.members > .member{
+    display:flex;
+    padding: 5px;
+    align-items: center;
+}
+
+.members .counter{
+    color: #fff;
+    background-color: limegreen;
+    width: 25px;
+    height: 20px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+.messages{
+    margin-bottom: 30px;
+    height: 90vh;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.messages .control-dialog{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.incoming, .outcome{
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.incoming{
+    background-color: linen;
+    margin-right: 10px;
+}
+
+.outcome{
+    text-align: right;
+    margin-right: 10px;
+}
+
+.name{
+    font-weight: bold;
+}
+
+#message{
+    width: 500px;
+}
