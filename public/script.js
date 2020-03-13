@@ -1,6 +1,16 @@
 var socket = io();
 
 function setUsername() {
+    if(document.querySelector('#name').value === ''){
+        document.getElementById('error-container').innerHTML = 'Введите имя';
+        document.getElementById('error-container').style.display = 'block';
+
+        setTimeout(function () {
+            document.getElementById('error-container').style.display = 'none';
+        }, 3000);
+
+        return;
+    }
     socket.emit('setUsername', document.getElementById('name').value);
 }
 
@@ -30,7 +40,7 @@ socket.on('userSet', function(data) {
     }
 
     document.body.innerHTML = `<div class="chat dialogs-block"><div class="members">` +
-        `<div class="title">Пользователей онлайн <span class="count">`+ (data.users.length - 1) +`</span></div>` +
+        `<div class="title">Пользователей онлайн: <span id="usersCount">`+ (data.users.length - 1) +`</span></div>` +
         usersHTML +
         `</div>` +
         `<div class="messages"></div></div>`;
@@ -39,8 +49,12 @@ socket.on('userSet', function(data) {
 socket.on('newclient', function (data) {
     var el = document.createElement('div');
     el.classList.add('member');
-    el.innerHTML = `<div class="member" onclick="openDialog('` + data.username + `'); return false;">` + data.username + `</div>`;
+    el.addEventListener('click', function () {
+        openDialog(data.username);
+    });
+    el.innerHTML = `<div class="member">` + data.username + `</div>`;
     document.querySelector('.members').appendChild(el);
+    document.querySelector('#usersCount').innerHTML = data.users.length - 1;
 });
 
 function sendMessage(name) {
@@ -88,6 +102,17 @@ socket.on('newmsg', function(data) {
             });
         }
     }
+});
+
+socket.on('dis', function(data) {
+
+    users = document.querySelectorAll('.members > .member');
+
+    users.forEach(function (el) {
+       if(el.querySelector('.member').innerHTML === data.username){
+           el.remove();
+       }
+    });
 });
 
 function openDialog(name) {

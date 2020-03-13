@@ -25,8 +25,24 @@ io.on('connection', function(socket) {
                 socket: socket
             });
             socket.emit('userSet', {username: data, users: users});
-            socket.broadcast.emit('newclient', {username: data});
+            socket.broadcast.emit('newclient', {username: data, users: users});
+
+            socket.name = data;
         }
+    });
+
+    socket.on('disconnect', function () {
+
+
+        users.forEach(function(item, index, object) {
+            if (item === socket.name) {
+                object.splice(index, 1);
+            }
+        });
+
+        console.log(users);
+
+        socket.broadcast.emit('dis', {username: socket.name});
     });
 
     socket.on('msg', function(data) {

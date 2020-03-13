@@ -49,19 +49,30 @@ body{
 }
 
 .members{
-    padding: 20px;
     width: 400px;
+}
+
+.members .title{
+    background-color: #5d5b78;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
 }
 
 .members > .member{
     display:flex;
     padding: 5px;
     align-items: center;
+    background-color: #fff;
+    color: gray;
+    cursor: pointer;
+    width: calc(100% - 10px);
+    margin-bottom: 3px;
 }
 
 .members .counter{
     color: #fff;
-    background-color: limegreen;
+    background-color: #5d5b78;
     width: 25px;
     height: 20px;
     text-align: center;
