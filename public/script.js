@@ -24,11 +24,11 @@ socket.on('userSet', function(data) {
         }
     }
 
-    document.body.innerHTML = `<div class="members">` +
-        `<div class="title">Пользователи онлайн</div>` +
+    document.body.innerHTML = `<div class="chat dialogs-block"><div class="members">` +
+        `<div class="title">Пользователей онлайн <span class="count">`+ (data.users.length - 1) +`</span></div>` +
         usersHTML +
         `</div>` +
-        `<div class="messages"></div>`;
+        `<div class="messages"></div></div>`;
 });
 
 socket.on('newclient', function (data) {
@@ -89,9 +89,9 @@ function openDialog(name) {
     var dialog = document.createElement('div');
     dialog.classList.add('control-dialog');
     dialog.innerHTML = `
-        <input type = "text" id = "message">
+        <input type = "text" id = "message" placeholder="Введите сообщение">
          <button type = "button" name = "button" onclick = "sendMessage('` + name +`')">
-            Отправить
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
          </button>
         `;
 

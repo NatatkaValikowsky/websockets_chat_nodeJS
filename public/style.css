@@ -1,5 +1,51 @@
 body{
     display:flex;
+    background-image: url(img/bg.jpg);
+    background-size: cover;
+    width: 95vw;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat{
+    background-color: rgba(255,255,255,.7);
+    width: 50%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.chat input{
+    width: 300px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid pink;
+    padding: 5px 10px;
+    margin-right: 10px;
+    color: grey;
+}
+
+.chat button{
+    padding: 15px 10px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #5d5b78;
+    font-weight: bold;
+    color: #fff;
+}
+
+.chat buutton i{
+    font-size: 14pt;
+}
+
+.chat.dialogs-block{
+    align-items: start;
+    width: 70%;
+    height: 70%;
 }
 
 .members{
@@ -23,16 +69,15 @@ body{
 }
 
 .messages{
-    margin-bottom: 30px;
-    height: 90vh;
+    height: 100%;
     overflow-y: scroll;
     width: 100%;
 }
 
-.messages .control-dialog{
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+.chat .control-dialog{
+    position: absolute;
+    bottom: -70px;
+    right: 0;
 }
 
 .incoming, .outcome{
