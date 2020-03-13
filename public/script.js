@@ -10,6 +10,11 @@ var currDialog;
 
 socket.on('userExists', function(data) {
     document.getElementById('error-container').innerHTML = data;
+    document.getElementById('error-container').style.display = 'block';
+
+    setTimeout(function () {
+        document.getElementById('error-container').style.display = 'none';
+    }, 3000);
 });
 
 socket.on('userSet', function(data) {
